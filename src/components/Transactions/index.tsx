@@ -15,22 +15,24 @@ interface ITransactionsProps {
 const Transactions: FC<ITransactionsProps> = ({ transactions }) => {
   return (
     <TableContainer>
-      <Table sx={{ width: "100vw" }} aria-label="simple table">
+      <Table sx={{ width: "100%" }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="right">Статус транзакции</TableCell>
-            <TableCell align="right">Период</TableCell>
-            <TableCell align="right">Период активиации</TableCell>
-            <TableCell align="right">Комментарий</TableCell>
+            <TableCell align="center">Статус транзакции</TableCell>
+            <TableCell align="center">Период</TableCell>
+            <TableCell align="center">Период активиации</TableCell>
+            <TableCell align="center">Комментарий</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {transactions.map((transaction) => (
             <TableRow>
-              <TableCell align="right">{transaction.state}</TableCell>
-              <TableCell align="right">{transaction.period}</TableCell>
-              <TableCell align="right">{transaction.period_activate}</TableCell>
-              <TableCell align="right">{transaction.comment}</TableCell>
+              <TableCell align="center">{transaction.state}</TableCell>
+              <TableCell align="center">{transaction.period}</TableCell>
+              <TableCell align="center">
+                {transaction.period_activate}
+              </TableCell>
+              <TableCell align="center">{transaction.comment}</TableCell>
             </TableRow>
           ))}
         </TableBody>

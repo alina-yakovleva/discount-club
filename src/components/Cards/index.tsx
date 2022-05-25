@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import { ICard } from "../../types/cards";
 
 interface ICardsProps {
@@ -15,28 +16,57 @@ interface ICardsProps {
 }
 
 const Cards: FC<ICardsProps> = ({ cards }) => {
+  const navigate = useNavigate();
   return (
-    <MuiCard sx={{ maxWidth: 400 }}>
+    <div>
       {cards.map((card) => (
-        <CardContent>
-          <Typography sx={{ fontSize: 25 }} color="text.secondary" gutterBottom>
-            Номер карты:{card.number}
-          </Typography>
+        <MuiCard
+          sx={{
+            margin: "20px auto",
+            maxWidth: 400,
+            borderRadius: 3,
+            padding: 1,
+          }}
+        >
+          <CardContent>
+            <Typography
+              sx={{ fontSize: 25 }}
+              color="text.secondary"
+              gutterBottom
+            >
+              Номер карты:{card.number}
+            </Typography>
 
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            Номер телефона:{card.phone}
-          </Typography>
-          <Typography variant="body2">
-            Дата создания:{card.created_date}
-          </Typography>
-        </CardContent>
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              Номер телефона:{card.phone}
+            </Typography>
+            <Typography variant="body2">
+              Дата создания:{card.created_date}
+            </Typography>
+          </CardContent>
+          <CardActions
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Button
+              size="large"
+              onClick={() => navigate(`/card/${card.uuid}/receipts`)}
+            >
+              Чеки{" "}
+            </Button>
+            <Button
+              size="large"
+              onClick={() => navigate(`/card/${card.uuid}/transactions`)}
+            >
+              Транзакции
+            </Button>
+          </CardActions>
+        </MuiCard>
       ))}
-
-      <CardActions>
-        <Button size="large">Чеки </Button>
-        <Button size="large">Транзакции</Button>
-      </CardActions>
-    </MuiCard>
+    </div>
   );
 };
 export default Cards;

@@ -16,24 +16,24 @@ interface IReceiptsProps {
 const Receipts: FC<IReceiptsProps> = ({ receipts }) => {
   return (
     <TableContainer>
-      <Table sx={{ width: "100vw" }} aria-label="simple table">
+      <Table sx={{ width: "100%" }}>
         <TableHead>
           <TableRow>
-            <TableCell align="right">Номер чека</TableCell>
-            <TableCell align="right">Тип</TableCell>
-            <TableCell align="right">Период</TableCell>
-            <TableCell align="right">Бонус</TableCell>
-            <TableCell align="right">Оплата</TableCell>
+            <TableCell align="center">Номер чека</TableCell>
+            <TableCell align="center">Тип</TableCell>
+            <TableCell align="center">Период</TableCell>
+            <TableCell align="center">Бонус</TableCell>
+            <TableCell align="center">Оплата</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {receipts.map((receipt) => (
             <TableRow>
-              <TableCell align="right">{receipt.number}</TableCell>
-              <TableCell align="right">{receipt.type}</TableCell>
-              <TableCell align="right">{receipt.period}</TableCell>
-              <TableCell align="right">{receipt.bonus}</TableCell>
-              <TableCell align="right">{receipt.payment}</TableCell>
+              <TableCell align="center">{receipt.number}</TableCell>
+              <TableCell align="center">{receipt.type}</TableCell>
+              <TableCell align="center">{receipt.period}</TableCell>
+              <TableCell align="center">{receipt.bonus}</TableCell>
+              <TableCell align="center">{receipt.payment}</TableCell>
             </TableRow>
           ))}
         </TableBody>
