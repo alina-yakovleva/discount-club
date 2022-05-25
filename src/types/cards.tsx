@@ -4,16 +4,19 @@ export enum CardStatus {
 }
 export interface ICard {
   uuid: string;
-  type_uuid: string;
+  account_id: string;
+  type_uuid: string | null;
   number: string;
+  email: string | null;
   status: CardStatus;
   holder: string;
-  phone: number;
+  phone: string;
   birthdate: string;
-  created_date: number;
+  created_date: string;
   created_user: string;
-  created_store_uuid: string;
-  created_device_uuid: string;
-  sales: number | null;
-  balance: number | null;
+  created_store_uuid: string | null;
+  created_device_uuid: string | null;
+  sales: string | null;
+  balance: string | null;
+  created_employee_uuid: null | string;
 }
