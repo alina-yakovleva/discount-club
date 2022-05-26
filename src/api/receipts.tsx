@@ -3,12 +3,16 @@ import { axios } from "./config";
 
 type IGetReceiptsResponse = IReceipt[];
 
-export const getReceipts = (from: number, to: number, cardUuid?: string) =>
+export const getReceipts = (
+  from: Date | null,
+  to: Date | null,
+  cardUuid?: string
+) =>
   axios
     .get<IGetReceiptsResponse>("/receipt", {
       params: {
-        from,
-        to,
+        from: from?.getTime(),
+        to: from?.getTime(),
         cardUuid,
       },
     })

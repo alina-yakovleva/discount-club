@@ -38,7 +38,7 @@ const Transactions: FC<ITransactionsProps> = ({ transactions }) => {
         </TableHead>
         <TableBody>
           {transactions.map((transaction) => (
-            <TableRow key={transaction.card_uuid}>
+            <TableRow key={transaction.uuid}>
               <TableCell align="center">{transaction.state}</TableCell>
               <TableCell align="center">
                 {dateFormat(transaction.period)}

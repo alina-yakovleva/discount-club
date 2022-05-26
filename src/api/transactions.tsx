@@ -3,12 +3,16 @@ import { axios } from "./config";
 
 type IGetTransactionsResponse = ITransaction[];
 
-export const getTransactions = (from: number, to: number, cardUuid?: string) =>
+export const getTransactions = (
+  from: Date | null,
+  to: Date | null,
+  cardUuid?: string
+) =>
   axios
     .get<IGetTransactionsResponse>("/transaction", {
       params: {
-        from,
-        to,
+        from: from?.getTime(),
+        to: from?.getTime(),
         card_uuid: cardUuid,
       },
     })

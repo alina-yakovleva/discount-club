@@ -40,7 +40,7 @@ const Receipts: FC<IReceiptsProps> = ({ receipts }) => {
         </TableHead>
         <TableBody>
           {receipts.map((receipt) => (
-            <TableRow key={receipt.card_uuid}>
+            <TableRow key={receipt.uuid}>
               <TableCell align="center">{receipt.number}</TableCell>
               <TableCell align="center">{receipt.type}</TableCell>
               <TableCell align="center">{dateFormat(receipt.period)}</TableCell>
