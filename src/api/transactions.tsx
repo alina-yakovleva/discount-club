@@ -3,7 +3,7 @@ import { axios } from "./config";
 
 type IGetTransactionsResponse = ITransaction[];
 
-export const getTransactions = (from: number, to: number, cardUuid: string) =>
+export const getTransactions = (from: number, to: number, cardUuid?: string) =>
   axios
     .get<IGetTransactionsResponse>("/transaction", {
       params: {

@@ -5,10 +5,12 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Typography,
 } from "@mui/material";
 
 import { FC } from "react";
 import { IReceipt } from "../../types/receipts";
+import { dateFormat } from "../../utils/dateFormat";
 
 interface IReceiptsProps {
   receipts: IReceipt[];
@@ -16,6 +18,16 @@ interface IReceiptsProps {
 const Receipts: FC<IReceiptsProps> = ({ receipts }) => {
   return (
     <TableContainer>
+      <Typography
+        variant="h5"
+        style={{
+          textAlign: "center",
+          margin: "20px",
+          textDecoration: "underline",
+        }}
+      >
+        Список чеков
+      </Typography>
       <Table sx={{ width: "100%" }}>
         <TableHead>
           <TableRow>
@@ -28,10 +40,10 @@ const Receipts: FC<IReceiptsProps> = ({ receipts }) => {
         </TableHead>
         <TableBody>
           {receipts.map((receipt) => (
-            <TableRow>
+            <TableRow key={receipt.card_uuid}>
               <TableCell align="center">{receipt.number}</TableCell>
               <TableCell align="center">{receipt.type}</TableCell>
-              <TableCell align="center">{receipt.period}</TableCell>
+              <TableCell align="center">{dateFormat(receipt.period)}</TableCell>
               <TableCell align="center">{receipt.bonus}</TableCell>
               <TableCell align="center">{receipt.payment}</TableCell>
             </TableRow>

@@ -8,7 +8,7 @@ export interface ITransaction {
   card_uuid: string;
   delta: null | number;
   state: TransactionState;
-  period: number | null;
+  period: string | null;
   period_activate: number | null;
   user_uid: string;
   store_uuid: string;

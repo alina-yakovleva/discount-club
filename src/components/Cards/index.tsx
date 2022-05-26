@@ -1,6 +1,5 @@
 import {
   Card as MuiCard,
-  Box,
   Button,
   CardActions,
   CardContent,
@@ -9,7 +8,9 @@ import {
 
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { ICard } from "../../types/cards";
+import { dateFormat } from "../../utils/dateFormat";
 
 interface ICardsProps {
   cards: ICard[];
@@ -21,6 +22,7 @@ const Cards: FC<ICardsProps> = ({ cards }) => {
     <div>
       {cards.map((card) => (
         <MuiCard
+          key={card.uuid}
           sx={{
             margin: "20px auto",
             maxWidth: 400,
@@ -41,7 +43,7 @@ const Cards: FC<ICardsProps> = ({ cards }) => {
               Номер телефона:{card.phone}
             </Typography>
             <Typography variant="body2">
-              Дата создания:{card.created_date}
+              Дата создания:{dateFormat(card.created_date)}
             </Typography>
           </CardContent>
           <CardActions

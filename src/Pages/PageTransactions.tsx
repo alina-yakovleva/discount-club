@@ -1,31 +1,29 @@
 import { IconButton } from "@mui/material";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import Transactions from "../components/Transactions";
-import { ITransaction, TransactionState } from "../types/transactions";
+import { ITransaction } from "../types/transactions";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { getTransactions } from "../api/transactions";
 
-const transaction: ITransaction = {
-  uuid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  card_uuid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  delta: 0,
-  state: TransactionState.PREPARED,
-  period: 0,
-  period_activate: 0,
-  user_uid: "54-858996333099876",
-  store_uuid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  device_uuid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  receipt_uuid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  comment: "string",
-};
 const PageTransactions: FC = () => {
+  const [transactions, setTransactions] = useState<ITransaction[]>([]);
+
   const navigate = useNavigate();
+
+  const { uuid } = useParams();
+
+  useEffect(() => {
+    getTransactions(0, 0, uuid).then((transaction) =>
+      setTransactions(transaction)
+    );
+  }, []);
   return (
     <div>
-      <IconButton>
-        <ArrowBackIcon onClick={() => navigate("/")} />
+      <IconButton onClick={() => navigate("/")}>
+        <ArrowBackIcon />
       </IconButton>
-      <Transactions transactions={[transaction]} />
+      <Transactions transactions={transactions} />
     </div>
   );
 };

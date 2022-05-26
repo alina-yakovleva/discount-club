@@ -4,7 +4,7 @@ export interface IReceipt {
   card_uuid: string;
   type: string;
   number: null | number;
-  period: null | number;
+  period: null | string;
   total: null | number;
   totalWithDiscount: null | number;
   bonus: null | number;

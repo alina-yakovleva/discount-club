@@ -3,7 +3,7 @@ import { axios } from "./config";
 
 type IGetReceiptsResponse = IReceipt[];
 
-export const getReceipts = (from: number, to: number, cardUuid: string) =>
+export const getReceipts = (from: number, to: number, cardUuid?: string) =>
   axios
     .get<IGetReceiptsResponse>("/receipt", {
       params: {

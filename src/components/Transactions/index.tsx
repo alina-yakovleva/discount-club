@@ -5,9 +5,11 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  Typography,
 } from "@mui/material";
 import { FC } from "react";
 import { ITransaction } from "../../types/transactions";
+import { dateFormat } from "../../utils/dateFormat";
 
 interface ITransactionsProps {
   transactions: ITransaction[];
@@ -15,6 +17,16 @@ interface ITransactionsProps {
 const Transactions: FC<ITransactionsProps> = ({ transactions }) => {
   return (
     <TableContainer>
+      <Typography
+        variant="h5"
+        style={{
+          textAlign: "center",
+          margin: "20px",
+          textDecoration: "underline",
+        }}
+      >
+        Список транзакций
+      </Typography>
       <Table sx={{ width: "100%" }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -26,9 +38,11 @@ const Transactions: FC<ITransactionsProps> = ({ transactions }) => {
         </TableHead>
         <TableBody>
           {transactions.map((transaction) => (
-            <TableRow>
+            <TableRow key={transaction.card_uuid}>
               <TableCell align="center">{transaction.state}</TableCell>
-              <TableCell align="center">{transaction.period}</TableCell>
+              <TableCell align="center">
+                {dateFormat(transaction.period)}
+              </TableCell>
               <TableCell align="center">
                 {transaction.period_activate}
               </TableCell>

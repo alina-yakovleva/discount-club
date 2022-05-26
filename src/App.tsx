@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
-import PageCards from "./Pages/PageCards";
-import PageReceipts from "./Pages/PageReceipts";
-import PageTransactions from "./Pages/PageTransactions";
+import PageCards from "./pages/PageCards";
+import PageReceipts from "./pages/PageReceipts";
+import PageTransactions from "./pages/PageTransactions";
 
 function App() {
   return (
