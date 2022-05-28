@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { IconButton } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 
 import DateField from "../components/DateField";
 import Transactions from "../components/Transactions";
@@ -16,17 +17,23 @@ const PageTransactions: FC = () => {
 
   const [from, setFrom] = useState<Date | null>(null);
   const [to, setTo] = useState<Date | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
   const { uuid } = useParams();
 
   useEffect(() => {
-    getTransactions(from, to, uuid).then((transaction) =>
-      setTransactions(transaction)
-    );
+    getTransactions(from, to, uuid).then((transaction) => {
+      setTransactions(transaction);
+      setLoading(false);
+    });
   }, [from, to, uuid]);
-  return (
+  return loading ? (
+    <Box display="flex" justifyContent="center" pt={20}>
+      <CircularProgress size={100} />
+    </Box>
+  ) : (
     <div>
       <IconButton onClick={() => navigate("/")}>
         <ArrowBackIcon />
